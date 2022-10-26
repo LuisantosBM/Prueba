@@ -13,3 +13,5 @@ df = pd.DataFrame({
 })
 
 st.write(df)
+
+st.map(df)
