@@ -1,5 +1,6 @@
 import streamlit as st
 import sqlite3
+import pandas as pd
 
 # Función para crear la tabla si no existe
 def create_table():
@@ -17,6 +18,14 @@ def add_opcion(opcion):
     conn.commit()
     conn.close()
 
+# Función para leer las opciones desde la tabla
+def read_opciones():
+    conn = sqlite3.connect("data.db")
+    c = conn.cursor()
+    df = pd.read_sql_query("SELECT * FROM opciones", conn)
+    conn.close()
+    return df
+
 # Crear la tabla en la base de datos SQLite
 create_table()
 
@@ -27,3 +36,8 @@ opcion_seleccionada = st.selectbox("Elige una opción:", ["Opción 1", "Opción 
 if st.button("Enviar"):
     add_opcion(opcion_seleccionada)
     st.write(f"Has seleccionado: {opcion_seleccionada}")
+
+# Mostrar las selecciones anteriores en una tabla
+st.subheader("Selecciones Anteriores")
+df = read_opciones()
+st.write(df)
