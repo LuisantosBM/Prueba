@@ -29,7 +29,7 @@ def read_opciones():
 create_table()
 
 # Permitir al usuario seleccionar una opción
-opcion_seleccionada = st.selectbox('Elige una opción:', ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'])
+opcion_seleccionada = st.selectbox('Elige una opción:', ['Opción 1 hola bubu', 'Opción 2', 'Opción 3', 'Opción 4'])
 
 # Botón para registrar la selección
 if st.button('Enviar'):
